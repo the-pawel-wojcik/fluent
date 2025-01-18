@@ -1,25 +1,36 @@
 # Links
+[Type hints are the bigest change since the great unification](https://fpy.li/descr101)
 
-/descr101 Type hints are the bigest change since the great unification
+[MyPy](https://mypy.readthedocs.io/en/stable/)
 
-/8-7 MyPy "Introduction"
+[MyPy.ini](https://fpy.li/8-8)
 
-/8-8 MyPy.ini
+[flake8 report style issues](https://fpy.li/8-9)
 
-/8-9 flake8 report style issues
+[blue format code following black's rules](https://fpy.li/8-10)
 
-/8-10 blue format code following black's rules
+[black](https://fpy.li/8-11)
 
-/8-11 black
+[Alternative Syntax for Union](https://fpy.li/pep604)
 
-/pep604 Alternative Syntax for Union
+[geohash](https://fpy.li/8-18)
 
-/8-18 geohash
+[:=](https://fpy.li/pep572)
 
-/pep572 :=
+[type hinting generics](https://fpy.li/pep585)
 
-/pep585 type hinting generics
+[statistics.mode](https://fpy.li/8-28)
 
-/8-28 statistics.mode
+[protocols](https://fpy.li/pep544)
 
-/pep544 protocols
+[Bernát Gábor](https://fpy.li/8-41)
+
+[Arne Hjelle](https://fpy.li/8-42)
+
+[Claudio Jolowicz](https://fpy.li/8-43)
+
+[MyPy](https://fpy.li/8-44)
+
+[common issues](https://fpy.li/8-46)
+
+[theory of type hints](https://fpy.li/pep483)
