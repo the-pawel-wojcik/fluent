@@ -9,3 +9,6 @@ dud:
 
 did:
 	$(mypy) --disallow-incomplete-defs $(file)
+
+test:
+	$(mypy) ./test_top.py
