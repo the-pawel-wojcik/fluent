@@ -1,37 +1,37 @@
 # Links
 
-/9-1 The 'dis' module
+[The 'dis' module](https://fpy.li/9-1)
 
-/pep443 single-dispatch generic functions
+[single-dispatch generic functions](https://fpy.li/pep443)
 
-/9-4 functools description of singledispatch
+[functools description of singledispatch](https://fpy.li/9-4)
 
-/effectpy Brett Slatkin Effective Python
+[Brett Slatkin Effective Python](https://fpy.li/effectpy)
 
-/9-5 Graham Dumpleton
+[Graham Dumpleton](https://fpy.li/9-5)
 
-/9-6 Graham Dumpleton
+[Graham Dumpleton](https://fpy.li/9-6)
 
-/9-7 Graham Dumpleton
+[Graham Dumpleton](https://fpy.li/9-7)
 
-/9-8 David Beazly and Brian Jones
+[David Beazly and Brian Jones](https://fpy.li/9-8)
 
-/9-9 Michele Simionato
+[Michele Simionato](https://fpy.li/9-9)
 
-/9-11 Fredrik Lundh
+[Fredrik Lundh](https://fpy.li/9-11)
 
-/9-12 pep 3104 Accessing variables in outer scopes
+[pep 3104 Accessing variables in outer scopes](https://fpy.li/9-12)
 
-/9-13 pep227 Statistically Nested Scopes
+[pep227 Statistically Nested Scopes](https://fpy.li/9-13)
 
-/9-14 pep 443 Single Dispatch Functions
+[pep 443 Single Dispatch Functions](https://fpy.li/9-14)
 
-/9-15 Guido van Rossum Multidispatch 2005
+[Guido van Rossum Multidispatch 2005](https://fpy.li/9-15)
 
-/9-16 Martijn Faassen "Reg"
+[Martijn Faassen "Reg"](https://fpy.li/9-16)
 
-/9-17 Martijn Faassen Morepath"
+[Martijn Faassen Morepath"](https://fpy.li/9-17)
 
-/9-19 Paul Graham
+[Paul Graham](https://fpy.li/9-19)
 
-/9-20 John McCarthy
+[John McCarthy](https://fpy.li/9-20)
