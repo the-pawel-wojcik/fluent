@@ -11,3 +11,7 @@
 [Formatted String Literals](https://fpy.li/11-4)
 
 [Format String Syntax](https://fpy.li/11-5)
+
+[Ian Bicking "Paste Style Guide"](https://fpy.li/11-8)
+
+[gettext](https://fpy.li/11-10)

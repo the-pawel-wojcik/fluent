@@ -21,6 +21,8 @@ from array import array
 import math
 
 class Vector2d:
+    __match_args__ = ('x', 'y')  # support for positional pattern matching
+    __slots__ = ('__x', '__y')
     typecode = 'd'
 
     def __init__(self, x, y):
@@ -110,3 +112,42 @@ class Vector2d:
         (1+1j)
         """
         return self.x + self.y * 1j
+
+    def __truediv__(self, denominator: float):
+        if not isinstance(denominator, float):
+            raise ValueError(f'{denominator} needs to be a float')
+        # Keeping the type in runtime helps with inheritance
+        return type(self)(self.x/denominator, self.y/denominator)
+
+
+
+def keyword_pattern_demo(v: Vector2d) -> None:
+    """
+    >>> keyword_pattern_demo(Vector2d(3, 0))
+    Vector2d(3.0, 0.0) points along the x axis.
+    >>> keyword_pattern_demo(Vector2d(3, 5))
+    Vector2d(3.0, 5.0) points along (0.51, 0.86).
+    """
+    match v:
+        case Vector2d(x=0, y=0):
+            print(f'{v!r} is null.')
+        case Vector2d(x=0):
+            print(f'{v!r} points along the y axis.')
+        case Vector2d(y=0):
+            print(f'{v!r} points along the x axis.')
+        case Vector2d(x=x, y=y) if x==y:
+            print(f'{v!r} points along the (1,1) axis.')
+        case _:
+            print(f'{v!r} points along {v/abs(v):.2f}.')
+
+
+class shortVector2d(Vector2d):
+    """
+    >>> len(bytes(Vector2d(1, 1)))
+    17
+    >>> len(bytes(shortVector2d(1, 1)))
+    9
+    """
+    typecode = 'f'
+
+
