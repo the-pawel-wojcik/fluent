@@ -2,6 +2,7 @@ import reprlib
 import array
 import math
 import operator
+import functools
 from typing import Any
 
 class Vector:
@@ -24,6 +25,11 @@ class Vector:
         content = content[content.find('['):-1]  # -1 trimms ')' from '])'
         return 'Vector(' + content + ')'
 
+    def __str__(self):
+        content = reprlib.repr(self._content)
+        content = content[content.find('['):-1]  # -1 trimms ')' from '])'
+        return content
+
     def __iter__(self):
         return iter(self._content)
 
@@ -39,7 +45,13 @@ class Vector:
         >>> Vector([1, 2, 3]) == Vector([1, 2, 3])
         True
         """
-        return tuple(self) == tuple(other)
+        if len(self) != len(other):
+            return False
+
+        return all(left == right for left, right in zip(self, other))
+
+    def __hash__(self):
+        return functools.reduce(lambda a, b: a^b, self, 0)
 
     def __abs__(self):
         """
@@ -128,10 +140,32 @@ class Vector:
         super().__setattr__(name, value)
         
         
-        
-
     @classmethod
     def frombytes(cls, bts):
         typecode = chr(bts[0])
         memv = memoryview(bts[1:]).cast(typecode=typecode)
         return cls(memv)
+
+    def angle(self, n):
+        if n < 1 or n >= len(self):
+            raise IndexError(f'Angles are index from 1 to {len(self)-1=}.')
+        radius = abs(self)
+        phi = math.atan2(radius, self._content[n-1])
+        if (n == len(self) - 1) and (self._content[-1] < 0):
+            return 2 * math.pi - phi 
+        return phi
+
+    def angles(self):
+        return (self.angle(n) for n in range(1, len(self)))
+
+    def __format__(self, fmt: str = '', /) -> str:
+        if fmt.endswith('h'):
+            fmt = fmt[:-1]
+            coords = [abs(self)] + [self.angle(n) for n in range(1, len(self))]
+            outer_fmt = '<{}>'
+        else:
+            coords = self
+            outer_fmt = '({})'
+        components = (format(c, fmt) for c in coords)
+        return outer_fmt.format(', '.join(components))
+        
