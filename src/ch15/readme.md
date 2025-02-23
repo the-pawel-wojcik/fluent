@@ -1,13 +1,23 @@
 # Links
 
-/15-5 pydantic 
+[pydantic](https://fpy.li/15-5)
 
-/pep589 typeddict 
+[typeddict](https://fpy.li/pep589)
 
-/15-8 lxml
+[lxm](https://fpy.li/15-8)
 
-/15-9 ElementTree
+[ElementTre](https://fpy.li/15-9)
 
-/pep563 alternative annotations evaluation 
+[alternative annotations evaluation](https://fpy.li/pep563)
 
-/pep649 same as above 
+[same as above](https://fpy.li/pep649)
+
+[Guido vs Rossu](https://fpy.li/15-40)
+
+[Ingkarat Rak-amnouykit](https://fpy.li/15-41)
+
+[Gilad Brach](https://fpy.li/15-42)
+
+[Eric Meijer & Peter Drayto](https://fpy.li/15-43)
+
+Patric Viafore "Robust Python"
