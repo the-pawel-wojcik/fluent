@@ -7,3 +7,5 @@
 [Guido van Rossum](https://fpy.li/pep255)
 
 [os.wal](https://fpy.li/17-2)
+
+[Python's exception hierarchy](https://fpy.li/17-14)
