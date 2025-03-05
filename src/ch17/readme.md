@@ -9,3 +9,5 @@
 [os.wal](https://fpy.li/17-2)
 
 [Python's exception hierarchy](https://fpy.li/17-14)
+
+[Coroutines via Enhanced Generator](https://fpy.li/pep342)
