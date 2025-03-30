@@ -1,7 +1,7 @@
 import itertools
 from multiprocessing import Process, Event
 from multiprocessing import synchronize
-from spinner_thread import slow, main
+from spinner_thread import slow
 
 
 def spin(msg: str, done: synchronize.Event) -> None:
@@ -36,8 +36,6 @@ def main():
     result = supervisor()
     print(f'The result is {result}')
 
+
 if __name__ == '__main__':
     main()
-
-    
-
