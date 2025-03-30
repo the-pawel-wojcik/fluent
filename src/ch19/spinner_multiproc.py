@@ -1,7 +1,7 @@
 import itertools
 from multiprocessing import Process, Event
 from multiprocessing import synchronize
-from spinner import slow, main
+from spinner_thread import slow, main
 
 
 def spin(msg: str, done: synchronize.Event) -> None:
