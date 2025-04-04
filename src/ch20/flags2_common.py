@@ -7,8 +7,10 @@ import time
 from collections import Counter
 from enum import Enum
 from pathlib import Path
+from typing import Callable, LiteralString
 
 DownloadStatus = Enum('DownloadStatus', 'OK NOT_FOUND ERROR')
+CCListType = list[str] | list[LiteralString]
 
 POP20_CC = (
     'CN IN US ID'
@@ -96,7 +98,9 @@ def expand_cc_args(
     return sorted(codes)[:limit]
 
 
-def process_args(default_concur_req):
+def process_args(
+    default_concur_req: int,
+) -> tuple[argparse.Namespace, CCListType]:
     server_options = ', '.join(sorted(SERVERS))
     parser = argparse.ArgumentParser(
         description='Download flags for country codes. '
@@ -153,7 +157,16 @@ def process_args(default_concur_req):
     return args, cc_list
 
 
-def main(download_many, default_concur_req, max_concur_req):
+
+
+def main(
+    download_many: Callable[
+        [CCListType, str, bool, int],
+        Counter[DownloadStatus]
+    ],
+    default_concur_req: int,
+    max_concur_req: int,
+) -> None:
     args, cc_list = process_args(default_concur_req)
     actual_req = min(args.max_req, max_concur_req, len(cc_list))
     initial_report(cc_list, actual_req, args.server)  # type: ignore

@@ -4,7 +4,7 @@ from http import HTTPStatus
 import httpx
 import tqdm
 
-from flags2_common import main, save_flag, DownloadStatus
+from flags2_common import CCListType, main, save_flag, DownloadStatus
 
 DEFAULT_CONCUR_REQ = 1
 MAX_CONCUR_REQ = 1
@@ -28,7 +28,7 @@ def get_one(base_url: str, cc: str, verbose: bool) -> DownloadStatus:
         else:
             raise
     else:
-        save_flag(image, f'{cc}.git')
+        save_flag(image, f'{cc}.gif')
         status = DownloadStatus.OK
         msg = 'ok'
 
@@ -39,7 +39,7 @@ def get_one(base_url: str, cc: str, verbose: bool) -> DownloadStatus:
 
 
 def download_many(
-    ccs: list[str],
+    ccs: CCListType,
     base_url: str,
     verbose: bool,
     _: int,
