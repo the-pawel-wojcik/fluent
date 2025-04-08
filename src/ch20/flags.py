@@ -6,7 +6,7 @@ import httpx
 
 POP20 = 'CN IN US ID PK BR NG BD RU JP MX ET PH VN EG DE IR TR TH FR'.split()
 BASE_URL = 'https://www.fluentpython.com/data/flags/'
-DEST_DIR = Path('flags')
+DEST_DIR = Path('downloads')
 
 
 def save_flag(img: bytes, filename: str) -> None:
