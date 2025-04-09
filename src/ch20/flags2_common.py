@@ -1,16 +1,16 @@
 """Utilities for second set of flag examples."""
 
 import argparse
+from collections.abc import Sequence
 import string
 import sys
 import time
 from collections import Counter
 from enum import Enum
 from pathlib import Path
-from typing import Callable, LiteralString
+from typing import Callable
 
 DownloadStatus = Enum('DownloadStatus', 'OK NOT_FOUND ERROR')
-CCListType = list[str] | list[LiteralString]
 
 POP20_CC = (
     'CN IN US ID'
@@ -31,7 +31,7 @@ SERVERS = {
 }
 DEFAULT_SERVER = 'LOCAL'
 
-DEST_DIR = Path('downloaded')
+DEST_DIR = Path('downloads')
 COUNTRY_CODES_FILE = Path('country_codes.txt')
 
 
@@ -100,7 +100,7 @@ def expand_cc_args(
 
 def process_args(
     default_concur_req: int,
-) -> tuple[argparse.Namespace, CCListType]:
+) -> tuple[argparse.Namespace, Sequence[str]]:
     server_options = ', '.join(sorted(SERVERS))
     parser = argparse.ArgumentParser(
         description='Download flags for country codes. '
@@ -161,7 +161,7 @@ def process_args(
 
 def main(
     download_many: Callable[
-        [CCListType, str, bool, int],
+        [Sequence[str], str, bool, int],
         Counter[DownloadStatus]
     ],
     default_concur_req: int,

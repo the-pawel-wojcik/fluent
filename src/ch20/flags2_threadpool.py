@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from concurrent import futures
 from typing import Counter
 import sys
@@ -5,7 +6,7 @@ import sys
 import httpx
 from tqdm import tqdm
 
-from flags2_common import CCListType, DownloadStatus, main
+from flags2_common import DownloadStatus, main
 from flags2_sequential import get_one
 
 DEFAULT_CONCUR_REQ = 30
@@ -13,7 +14,7 @@ MAX_CONCUR_REQ = 1000
 
 
 def download_many(
-    ccs: CCListType,
+    ccs: Sequence[str],
     base_url: str,
     verbose: bool,
     max_concur_req: int,

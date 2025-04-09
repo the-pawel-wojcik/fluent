@@ -1,10 +1,11 @@
 from collections import Counter
 from http import HTTPStatus
+from collections.abc import Sequence
 
 import httpx
 import tqdm
 
-from flags2_common import CCListType, main, save_flag, DownloadStatus
+from flags2_common import main, save_flag, DownloadStatus
 
 DEFAULT_CONCUR_REQ = 1
 MAX_CONCUR_REQ = 1
@@ -39,7 +40,7 @@ def get_one(base_url: str, cc: str, verbose: bool) -> DownloadStatus:
 
 
 def download_many(
-    ccs: CCListType,
+    ccs: Sequence[str],
     base_url: str,
     verbose: bool,
     _: int,
