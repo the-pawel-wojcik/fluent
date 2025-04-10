@@ -19,16 +19,22 @@ except ValueError: # Already removed
     pass
 
 from ch20.flags2_common import DownloadStatus, main, save_flag
+from flags2_asyncio import download_flag, download_many
 
 DEFAULT_CONCUR_REQ = 5
 MAX_CONCUR_REQ = 1000
 
 
-async def download_flag(client: AsyncClient, base_url: str, cc: str) -> bytes:
-    url = f'{base_url}/{cc}/{cc}.gif'.lower()
+async def download_country(
+    client: AsyncClient,
+    base_url: str,
+    cc: str,
+) -> str:
+    url = f'{base_url}/{cc}/metadata.json'.lower()
     response = await client.get(url=url, follow_redirects=False, timeout=10)
     response.raise_for_status()
-    return response.content
+    meta = response.json()
+    return meta['country']
 
 
 async def get_one(
@@ -41,6 +47,8 @@ async def get_one(
     try:
         async with semaphore:
             image = await download_flag(client, base_url, cc)
+        async with semaphore:
+            country = await download_country(client, base_url, cc)
     except httpx.HTTPStatusError as exc:
         response = exc.response
         if response.status_code == HTTPStatus.NOT_FOUND:
@@ -49,7 +57,8 @@ async def get_one(
         else:
             raise
     else:
-        await asyncio.to_thread(save_flag, image, f'{cc}.gif')
+        filename = country.replace(' ', '_')
+        await asyncio.to_thread(save_flag, image, f'{cc}_{filename}.gif')
         status = DownloadStatus.OK
         msg = 'ok'
 
@@ -80,7 +89,7 @@ async def async_download_many(
 
     counter: Counter[DownloadStatus] = Counter()
     semaphore = asyncio.Semaphore(concur_req)
-    
+
     # spawn coroutines
     async with AsyncClient() as client:
         tasks = [
