@@ -1,6 +1,6 @@
 import pytest
 
-import schedule as schedule
+import schedule
 
 @pytest.fixture
 def records():
@@ -46,3 +46,14 @@ def test_event_venue():
     assert event.venue_serial == 1449
     assert event.venue == schedule.Record.fetch('venue.1449')
     assert event.venue.name == 'Portland 251'
+
+
+def test_event_speakers():
+    event = schedule.Record.fetch('event.33950')
+    assert len(event.speakers) == 2
+    anna, alex = [schedule.Record.fetch(f'speaker.{s}') for s in (3471, 5199)]
+    assert event.speakers == [anna, alex]
+
+def test_event_no_speakers():
+    event = schedule.Record.fetch('event.36848')
+    assert event.speakers == []

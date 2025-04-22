@@ -6,13 +6,19 @@ schedule.py: property to get venue linked to an event
     <Event 'There *Will* Be Bugs'>
     >>> event.venue
     <Record serial=1449>
-    >>> event.venue.name
-    'Portland 251'
     >>> event.venue_serial
     1449
+    >>> event.venue.name
+    'Portland 251'
+    >>> for spkr in event.speakers:
+    ...     print(f'{spkr.serial}: {spkr.name}')
+    ...
+    3471: Anna Martelli Ravenscroft
+    5199: Alex Martelli
 
 """
 
+from functools import cache, cached_property
 import inspect
 import json
 
@@ -43,19 +49,19 @@ class Event(Record):
         except AttributeError:
             return super().__repr__()
 
-    @property
+    @cached_property
     def venue(self):
         key = f'venue.{self.venue_serial}'
         return self.__class__.fetch(key)
 
 
     @property
+    @cache
     def speakers(self):
-        sprk_serials = self.__dict__['speakers']
+        spkr_serials = self.__dict__['speakers']
         fetch = self.__class__.fetch
-        return [fetch(f'speaker.{key}') for key in sprk_serials]
-        
-
+        return [fetch(f'speaker.{key}')
+                for key in spkr_serials]
 
 def load(path=JSON_PATH):
     records = {}
