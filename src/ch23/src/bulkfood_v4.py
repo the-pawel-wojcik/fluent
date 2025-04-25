@@ -10,24 +10,19 @@ ValueError: weight must be positive.
 """
 
 class Quantity:
-    def __init__(self, name: str):
-        self.__name: str = name
-
-    def __get__(self, instance, owner):
-        if instance is None:
-            return self
-        return instance.__dict__[self.__name]
+    def __set_name__(self, owner, name):
+        self.name = name
 
     def __set__(self, instance, value):
         if value > 0:
-            instance.__dict__[self.__name] = value
+            instance.__dict__[self.name] = value
         else:
-            raise ValueError(f'{self.__name} must be positive.')
+            raise ValueError(f'{self.name} must be positive.')
 
 
 class LineItem:
-    weight = Quantity('weight')
-    price = Quantity('price')
+    weight = Quantity()
+    price = Quantity()
 
     def __init__(self, description: str, weight: float, price: float):
         self.description = description
