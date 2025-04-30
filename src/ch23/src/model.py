@@ -15,6 +15,7 @@ class Validated(abc.ABC):
 
 
 class Quantity(Validated):
+    """ A positive value. """
     def validate(self, name, value):
         if value > 0:
             return value
@@ -22,7 +23,9 @@ class Quantity(Validated):
 
 
 class NonBlank(Validated):
+    """ A non-blank string. """
     def validate(self, name, value):
-        if value.strip():
-            return value
+        if isinstance(value, str):
+            if value.strip():
+                return value
         raise ValueError(f'{name} cannot be blank.')
